@@ -7,10 +7,12 @@ var app = express();
 
 var config = require('./config');
 
+var PUERTO = process.env.PORT || 8080;
+
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.listen(config.web.PORT, function(){
-  console.log('Escuchando en el puerto ' + config.web.PORT);
+app.listen(PUERTO, function(){
+  console.log('Escuchando en el puerto ' + PUERTO);
 });
 
 app.use('/',require('./routes'));
