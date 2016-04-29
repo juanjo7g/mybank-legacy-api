@@ -1,0 +1,32 @@
+{
+  "name": "mybank-legacy-api",
+  "version": "1.0.0",
+  "description": "Legacy API en node.js para backend de la aplicación empresarial MyBank.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinez7g/mybank-legacy-api.git"
+  },
+  "keywords": [
+    "api",
+    "backend",
+    "legacy",
+    "mybank"
+  ],
+  "author": "Juan <tinez7g@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tinez7g/mybank-legacy-api/issues"
+  },
+  "homepage": "https://github.com/tinez7g/mybank-legacy-api#readme",
+  "engines": {
+    "node": "5.7.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  }
+}
