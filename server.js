@@ -17,5 +17,12 @@ app.listen(PUERTO, function(){
   console.log('Escuchando en el puerto ' + PUERTO);
 });
 
+// 'Access-Control-Allow-Origin'
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
+
 // Se le asigna al archivo routes.js la redirección de rutas.
 app.use('/',require('./routes'));
