@@ -3,12 +3,13 @@ var express = require('express');
 var pg = require('pg');
 var config = require('../config');
 var router = express.Router();
+var routes = require('../routes');
 
 pg.defaults.ssl = true;
 
 router.get('/getByEmail', function (req, res){
   // Realizando la consulta a la base de datos.
-  var email = req.query.email;
+  var email = routes.email;
   var queryGet = 'SELECT name, type, balance FROM product WHERE email_client = \'' + email + '\';';
   var URL = config.postgres.URL;
   var results = [];
