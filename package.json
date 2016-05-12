@@ -4,7 +4,7 @@
   "description": "Legacy API en node.js para backend de la aplicación empresarial MyBank.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,7 @@ console.log('Inició el Legacy API de MyBank');
 // Modulos requeridos.
 var express = require('express');
 var bodyParser = require('body-parser');
-var config = require('./config');
+var config = require('../config');
 
 // Variables necesarias para desplegar la aplicación.
 var app = express();

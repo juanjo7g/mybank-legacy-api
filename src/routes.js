@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var config = require('./config');
+var config = require('../config');
 
 // Para obtener un token del servidor
 // var FirebaseTokenGenerator = require("firebase-token-generator");
@@ -49,8 +49,6 @@ router.post('*', function(req, res, next) {
   }
 });
 
-router.use('/api/root',require('./services/root'));
-router.use('/api/item',require('./services/item'));
 router.use('/api/product', require('./services/product'));
 
 module.exports = router;

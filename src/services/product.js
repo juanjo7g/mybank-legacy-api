@@ -1,7 +1,7 @@
 // Obteniendo los modulos necesarios.
 var express = require('express');
 var pg = require('pg');
-var config = require('../config');
+var config = require('../../config');
 var router = express.Router();
 var routes = require('../routes');
 
