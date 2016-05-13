@@ -14,8 +14,6 @@ router.get('/getByEmail', function (req, res){
   var URL = config.postgres.URL;
   var results = [];
 
-  console.log(queryGet); // Verificando el query
-
   // Conectando base de datos y ejecutando el query.
   pg.connect(URL, function(err, client, done){
     if(err) {

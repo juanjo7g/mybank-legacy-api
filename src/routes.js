@@ -25,7 +25,7 @@ router.get('*', function(req, res, next) {
       } else {
         // Se almacena el email relacionado al token
         exports.email = authData.auth.token.email;
-        console.log("Login Succeeded!", authData);
+        console.log("Login Succeeded!");
         next();
       }
     });
@@ -42,7 +42,7 @@ router.post('*', function(req, res, next) {
         console.log(error);
         res.status(401).json({ success: false, data: "ERROR token invalido"});
       } else {
-        console.log("Login Succeeded!", authData);
+        console.log("Login Succeeded!");
         next();
       }
     });
