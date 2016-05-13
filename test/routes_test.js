@@ -47,9 +47,9 @@ describe("Prueba Unitaria routes.js",function(){
     server
     .post("/test")
     .send({"token":token})
-    .expect(404)
+    .expect(401)
     .end(function(err,res){
-      res.status.should.equal(404);
+      res.status.should.equal(401);
       done();
     });
   });
