@@ -2,7 +2,7 @@
   "name": "mybank-legacy-api",
   "version": "1.0.0",
   "description": "Legacy API en node.js para backend de la aplicación empresarial MyBank.",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node ./src/server.js",
     "coveralls": "gulp test && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",

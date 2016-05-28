@@ -11,6 +11,7 @@ var PUERTO = process.env.PORT || 8080;
 var server = supertest.agent("http://localhost:" + PUERTO);
 
 describe("Prueba Unitaria services/product.js",function(){
+  this.timeout(5000);
 
   it("Prueba metodo getByEmail con token valido",function(done){
     server

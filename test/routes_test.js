@@ -11,6 +11,7 @@ var PUERTO = process.env.PORT || 8080;
 var server = supertest.agent("http://localhost:" + PUERTO);
 
 describe("Prueba Unitaria routes.js",function(){
+  this.timeout(3000);
 
   it("Prueba metodo GET sin token",function(done){
     server
@@ -42,14 +43,15 @@ describe("Prueba Unitaria routes.js",function(){
     });
   });
 
-// Todo: enviar parametro token a la prueba
   it("Prueba metodo POST con token valido",function(done){
+    var body = { token: token };
     server
     .post("/test")
-    .send({"token":token})
-    .expect(401)
+    .type('form')
+    .send(body)
+    .expect(404)
     .end(function(err,res){
-      res.status.should.equal(401);
+      res.status.should.equal(404);
       done();
     });
   });
