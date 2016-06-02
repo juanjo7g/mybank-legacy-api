@@ -7,10 +7,14 @@ var routes = require('../routes');
 
 pg.defaults.ssl = true;
 
-router.get('/getByEmail', function (req, res){
+// Obtener productos de un cliente dado el email
+router.get('/get/:email', function (req, res){
   // Realizando la consulta a la base de datos.
   var email = routes.email;
-  var queryGet = 'SELECT name, type, balance FROM product WHERE email_client = \'' + email + '\';';
+  if(email == undefined){
+    email = req.params.email;
+  }
+  var queryGet = 'SELECT * FROM producto WHERE cliente_correo = \'' + email + '\';';
   var URL = config.postgres.URL;
   var results = [];
 

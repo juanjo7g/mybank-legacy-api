@@ -10,12 +10,12 @@ var token = tokenGenerator.createToken({ uid: "uniqueId1", some: "arbitrary", da
 var PUERTO = process.env.PORT || 8080;
 var server = supertest.agent("http://localhost:" + PUERTO);
 
-describe("Prueba Unitaria services/product.js",function(){
+describe("Prueba Unitaria services/producto.js",function(){
   this.timeout(5000);
 
-  it("Prueba metodo getByEmail con token valido",function(done){
+  it("Prueba metodo get por correo con token valido",function(done){
     server
-    .get("/api/product/getByEmail?token=" + token)
+    .get("/api/v2/producto/get/email@test.com?token=" + token)
     .expect(200)
     .end(function(err,res){
       res.status.should.equal(200);
@@ -23,14 +23,14 @@ describe("Prueba Unitaria services/product.js",function(){
     });
   });
 
-  it("Prueba metodo getByEmail con token invalido",function(done){
+  it("Prueba metodo get por correo con token invalido",function(done){
     server
-    .get("/api/product/getByEmail?token=123")
+    .get("/api/v2/producto/get/email@test.com?token=123")
     .expect(401)
     .end(function(err,res){
       res.status.should.equal(401);
       done();
     });
   });
-
+  
 });
