@@ -12,4 +12,9 @@ router.get('/get/:tipo_doc/:documento', function (req, res){
   return res.status(200);
 });
 
+// Metodo para consultar la información del ejecutivo como cliente
+router.get('/get/:email', function (req, res){
+  return res.status(200);
+});
+
 module.exports = router;
