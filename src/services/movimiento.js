@@ -8,7 +8,7 @@ var util = require('../util');
 
 pg.defaults.ssl = true;
 
-// Metodo para consultar la lista de movimientos dado el id del producto
+// Metodo para consultar la lista de movimientos dado el id del producto como cliente
 router.get('/get/:producto_id/:email', function (req, res){
   var producto_id = req.params.producto_id;
 
@@ -68,45 +68,41 @@ router.get('/get/:producto_id/:email', function (req, res){
       });
     });
   });
-  return res.status(200);
 });
 
-// Metodo para los detalles de un movimiento dado el id del movimiento
-router.get('/get/:id', function (req, res){
-  // Realizando la consulta a la base de datos.
-  var id = routes.id;
-  if(id == undefined){
-    id = req.params.id;
-  }
-  var queryGet = 'SELECT * FROM movimiento WHERE id = ' + id + ';';
-  var URL = config.postgres.URL;
-  var results = [];
+// Metodo para la lista de productos de un cliente como ejecutivo
+router.get('/get/:producto_id', function (req, res){
+    var producto_id = req.params.producto_id;
+    
+    var queryGet = 'SELECT * FROM movimiento WHERE producto_id = \'' + producto_id + '\';';
+    var URL = config.postgres.URL;
+    var results = [];
 
-  // Conectando base de datos y ejecutando el query.
-  pg.connect(URL, function(err, client, done){
-    if(err) {
-      done();
-      console.log(err);
-      return res.status(500).json({ success: false, data: "ERROR en la base de datos"});
-    }
-    var query = client.query(queryGet, function(err, result){
-      if (err){
+    // Conectando base de datos y ejecutando el query.
+    pg.connect(URL, function(err, client, done){
+      if(err) {
         done();
         console.log(err);
-        return res.status(400).json({ success: false, data: "ERROR en el query"});
+        return res.status(500).json({ success: false, data: "ERROR en la base de datos"});
       }
-      console.log('Consuta exitosa.');
-      client.end();
+      var queryMovimientos = client.query(queryGet, function(err, result){
+        if (err){
+          done();
+          console.log(err);
+          client.end();
+          return res.status(400).json({ success: false, data: "ERROR en el query"});
+        }
+        console.log('Consuta exitosa.');
+      });
+      queryMovimientos.on('row', function(row){
+        results.push(row);
+      });
+      queryMovimientos.on('end', function() {
+        //TODO: Validar que el producto sea de un cliente asignado al ejecutivo
+        done();
+        return res.status(200).json(results);
+      });
     });
-    query.on('row', function(row){
-      results.push(row);
-    });
-    query.on('end', function() {
-      done();
-      return res.status(200).json(results);
-    });
-  });
-    return res.status(200);
 });
 
 module.exports = router;

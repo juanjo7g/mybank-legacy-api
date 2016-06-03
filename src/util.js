@@ -43,8 +43,9 @@ exports.enviarSMS = function(correo_cliente) {
         console.log(result.rows[0]);
         var celular;
         if (result.rows[0] == undefined) {
-          celular = undefined;
+          return console.log('Sin celular');
         }
+        celular = result.rows[0].celular;
         client.end();
         if (celular != undefined) {
           console.log('Celular: ' + celular);
