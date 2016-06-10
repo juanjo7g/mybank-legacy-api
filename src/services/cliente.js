@@ -47,7 +47,7 @@ router.get('/get/:tipo_doc/:documento', function (req, res){
   // Realizando la consulta a la base de datos.
   var tipo_doc = req.params.tipo_doc;
   var documento = req.params.documento;
-  var queryGet = 'SELECT * FROM cliente WHERE tipo_doc = \'' + tipo_doc + '\' and documento = \'' + documento + '\';';
+  var queryGet = 'SELECT * FROM cliente WHERE LOWER(tipo_doc) = LOWER(\'' + tipo_doc + '\') and documento = \'' + documento + '\';';
   var URL = config.postgres.URL;
   var cliente;
 
